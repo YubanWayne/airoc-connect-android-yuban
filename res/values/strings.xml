@@ -329,6 +329,7 @@
     <string name="gatt_descriptors_heading">Descriptors</string>
     <string name="profile_scan_fragment">Devices</string>
     <string name="battery_info_fragment">Battery Service</string>
+    <string name="co2_info_fragment">CO2 Sensor</string>
     <string name="findme_fragment">Find Me</string>
     <string name="proximity_fragment">Proximity</string>
     <string name="rsc_fragment">Running Speed and Cadence</string>

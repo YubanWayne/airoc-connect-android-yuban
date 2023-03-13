@@ -62,6 +62,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.infineon.airocbluetoothconnect.BLEServiceFragments.CO2InformationService;
+
 import com.infineon.airocbluetoothconnect.BLEConnectionServices.BluetoothLeService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.BatteryInformationService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.BloodPressureService;
@@ -414,6 +416,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationDra
             mParentView.closeDrawer(GravityCompat.START);
         } else {
             if (currentFragment instanceof HeartRateService
+                    || currentFragment instanceof CO2InformationService
                     || currentFragment instanceof HealthTemperatureService
                     || currentFragment instanceof DeviceInformationService
                     || currentFragment instanceof BatteryInformationService

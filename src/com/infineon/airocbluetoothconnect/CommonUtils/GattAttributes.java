@@ -51,6 +51,11 @@ public class GattAttributes {
     private static HashMap<UUID, String> attributesUUID = new HashMap<>();
     private static HashMap<Integer, String> rdkAttributesUUID = new HashMap<>();
     /**
+     * CO2 Sensor
+     */
+    public static final String Carbon_Dioxide_Sensor = "0000054a-0000-1000-8000-00805f9b34fb";
+
+    /**
      * Services
      */
     public static final String HEART_RATE_SERVICE = "0000180d-0000-1000-8000-00805f9b34fb";
@@ -352,6 +357,9 @@ public class GattAttributes {
     public static final String WEARABLE_MOTION_DISTANCE_GOAL_CHARACTERISTIC = "000d0009-f8ce-11e4-abf4-0002a5d5c51b";
 
     static {
+        //CO2 Sensor
+        attributesUUID.put(UUIDDatabase.UUID_Carbon_Dioxide_Sensor, "CO2 Sensor");
+
         // Services.
         attributesUUID.put(UUIDDatabase.UUID_HEART_RATE_SERVICE, "Heart Rate Service");
         attributesUUID.put(UUIDDatabase.UUID_HEALTH_THERMOMETER_SERVICE, "Health Thermometer Service");
@@ -626,6 +634,9 @@ public class GattAttributes {
         rdkAttributesUUID.put(3, "Report Power");
         rdkAttributesUUID.put(4, "Report Audio Control");
         rdkAttributesUUID.put(5, "Report Audio Data");
+
+        //CO2
+        attributesImageMap.put(UUIDDatabase.UUID_Carbon_Dioxide_Sensor, R.drawable.co2);
 
         // Services Image Mapping.
         attributesImageMap.put(UUIDDatabase.UUID_HEART_RATE_SERVICE, R.drawable.heart_rate);

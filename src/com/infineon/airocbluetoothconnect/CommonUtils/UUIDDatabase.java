@@ -39,6 +39,9 @@ import java.util.UUID;
  * This class will store the UUID of the GATT services and characteristics
  */
 public class UUIDDatabase {
+
+    public final static UUID UUID_Carbon_Dioxide_Sensor = UUID
+            .fromString(GattAttributes.Carbon_Dioxide_Sensor);
     /**
      * Heart rate related UUID
      */
