@@ -150,6 +150,11 @@
         If you see this error repeatedly, disconnect and connect back to the device.</string>
 
     <!-- HRM profile elements -->
+    <string name="co2_parts_ppm">ppm</string>
+    <string name="co2_demo_ppm">100</string>
+
+
+    <!-- HRM profile elements -->
     <string name="hrm_data_unit">bpm</string>
     <string name="hrm_graph_title">Heart Rate Vs Time </string>
     <string name="hrm_graph_label">Heart Rate (bpm)</string>

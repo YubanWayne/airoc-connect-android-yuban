@@ -33,6 +33,7 @@
 
 package com.infineon.airocbluetoothconnect.BLEServiceFragments;
 
+import android.animation.ObjectAnimator;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -40,6 +41,8 @@ import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,6 +55,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -132,8 +136,10 @@ public class CO2InformationService extends Fragment {
 
     };
     // Data fields
-    private TextView mBatteryLevelText;
-    private ProgressBar mBatteryProgress;
+    private ImageView mGreenLed;
+    private ImageView mOrangeLed;
+
+    private ImageView mRedLed;
     private Button mNotifyButton;
     private Button mReadButton;
 
@@ -143,9 +149,10 @@ public class CO2InformationService extends Fragment {
      * @param received_btl_data
      */
     private void displayBatteryLevel(String received_btl_data) {
-        mBatteryLevelText.setText(received_btl_data + "%");
-        int battery = Integer.parseInt(received_btl_data);
-        mBatteryProgress.setProgress(battery);
+        //mBatteryLevelText.setText(received_btl_data + "%");
+        //int battery = Integer.parseInt(received_btl_data);
+        //mBatteryProgress.setProgress(battery);
+
 
     }
 
@@ -160,10 +167,30 @@ public class CO2InformationService extends Fragment {
         View rootView = inflater.inflate(R.layout.co2_info_fragment,
                 container, false);
 
-        mBatteryLevelText = (TextView) rootView
-                .findViewById(R.id.battery_level);
-        mBatteryProgress = (ProgressBar) rootView
-                .findViewById(R.id.battery_level_progressbar);
+        mGreenLed = (ImageView)  rootView.findViewById(R.id.green_led);
+
+        mOrangeLed = (ImageView)  rootView.findViewById(R.id.orange_led);
+
+        mRedLed = (ImageView)  rootView.findViewById(R.id.red_led);
+
+        AnimationDrawable green = (AnimationDrawable) mGreenLed.getBackground();
+
+        green.setEnterFadeDuration(500);
+        green.setExitFadeDuration(500);
+        green.start();
+
+        AnimationDrawable orange = (AnimationDrawable) mOrangeLed.getBackground();
+
+        orange.setEnterFadeDuration(500);
+        orange.setExitFadeDuration(500);
+        orange.start();
+
+        AnimationDrawable Red = (AnimationDrawable) mRedLed.getBackground();
+
+        Red.setEnterFadeDuration(500);
+        Red.setExitFadeDuration(500);
+        Red.start();
+
         mNotifyButton = (Button) rootView
                 .findViewById(R.id.battery_level_notify);
         mReadButton = (Button) rootView
@@ -223,7 +250,7 @@ public class CO2InformationService extends Fragment {
                 .getCharacteristics();
         for (BluetoothGattCharacteristic gattCharacteristic : gattCharacteristics) {
             String uuidchara = gattCharacteristic.getUuid().toString();
-            if (uuidchara.equalsIgnoreCase(GattAttributes.BATTERY_LEVEL)) {
+            if (uuidchara.equalsIgnoreCase(GattAttributes.CO2_LEVEL)) {
                 mReadCharacteristic = gattCharacteristic;
                 mNotifyCharacteristic = gattCharacteristic;
 

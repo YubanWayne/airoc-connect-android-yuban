@@ -113,6 +113,13 @@ public class GattAttributes {
     public static final String SYSTEM_ID = "00002a23-0000-1000-8000-00805f9b34fb";
     public static final String REGULATORY_CERTIFICATION_DATA_LIST = "00002a2a-0000-1000-8000-00805f9b34fb";
     public static final String UUID_PNP_ID = "00002a50-0000-1000-8000-00805f9b34fb";
+
+    /**
+     *
+     */
+
+    public static final String CO2_LEVEL = "C23AB04B-5B8B-40CB-AB44-069084FB0724";
+
     /**
      * Battery characteristics
      */
