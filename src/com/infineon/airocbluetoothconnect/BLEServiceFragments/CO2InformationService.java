@@ -136,10 +136,12 @@ public class CO2InformationService extends Fragment {
 
     };
     // Data fields
+
+    private View rootView;
     private ImageView mGreenLed;
     private ImageView mOrangeLed;
-
     private ImageView mRedLed;
+
     private Button mNotifyButton;
     private Button mReadButton;
 
@@ -164,63 +166,13 @@ public class CO2InformationService extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.co2_info_fragment,
+        rootView = inflater.inflate(R.layout.co2_info_fragment,
                 container, false);
 
-        mGreenLed = (ImageView)  rootView.findViewById(R.id.green_led);
+        LED_init();
 
-        mOrangeLed = (ImageView)  rootView.findViewById(R.id.orange_led);
-
-        mRedLed = (ImageView)  rootView.findViewById(R.id.red_led);
-
-        AnimationDrawable green = (AnimationDrawable) mGreenLed.getBackground();
-
-        green.setEnterFadeDuration(500);
-        green.setExitFadeDuration(500);
-        green.start();
-
-        AnimationDrawable orange = (AnimationDrawable) mOrangeLed.getBackground();
-
-        orange.setEnterFadeDuration(500);
-        orange.setExitFadeDuration(500);
-        orange.start();
-
-        AnimationDrawable Red = (AnimationDrawable) mRedLed.getBackground();
-
-        Red.setEnterFadeDuration(500);
-        Red.setExitFadeDuration(500);
-        Red.start();
-
-        mNotifyButton = (Button) rootView
-                .findViewById(R.id.battery_level_notify);
-        mReadButton = (Button) rootView
-                .findViewById(R.id.battery_level_read);
         mProgressDialog = new ProgressDialog(getActivity());
-        mNotifyButton.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                if (mNotifyCharacteristic != null) {
-                    if (mNotifyButton.getText().toString().equalsIgnoreCase(getString(R.string.battery_start_notify))) {
-                        mNotifyButton.setText(getString(R.string.battery_stop_notify));
-                        prepareBroadcastDataNotify(mNotifyCharacteristic);
-                        mNotifyCharacteristicEnabled = true;
-                    } else if (mNotifyButton.getText().toString().equalsIgnoreCase(getString(R.string.battery_stop_notify))) {
-                        mNotifyButton.setText(getString(R.string.battery_start_notify));
-                        stopBroadcastDataNotify(mNotifyCharacteristic);
-                        mNotifyCharacteristicEnabled = false;
-                    }
-                }
-            }
-        });
-        mReadButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mReadCharacteristic != null) {
-                    prepareBroadcastDataRead(mReadCharacteristic);
-                }
-            }
-        });
         setHasOptionsMenu(true);
         return rootView;
     }
@@ -251,20 +203,7 @@ public class CO2InformationService extends Fragment {
         for (BluetoothGattCharacteristic gattCharacteristic : gattCharacteristics) {
             String uuidchara = gattCharacteristic.getUuid().toString();
             if (uuidchara.equalsIgnoreCase(GattAttributes.CO2_LEVEL)) {
-                mReadCharacteristic = gattCharacteristic;
-                mNotifyCharacteristic = gattCharacteristic;
 
-                /**
-                 * Checking the various GattCharacteristics and listing in the ListView
-                 */
-                if (checkCharacteristicsPropertyPresence(gattCharacteristic.getProperties(),
-                        BluetoothGattCharacteristic.PROPERTY_READ)) {
-                    mReadButton.setVisibility(View.VISIBLE);
-                }
-                if (checkCharacteristicsPropertyPresence(gattCharacteristic.getProperties(),
-                        BluetoothGattCharacteristic.PROPERTY_NOTIFY)) {
-                    mNotifyButton.setVisibility(View.VISIBLE);
-                }
                 prepareBroadcastDataRead(gattCharacteristic);
                 break;
             }
@@ -334,5 +273,22 @@ public class CO2InformationService extends Fragment {
     boolean checkCharacteristicsPropertyPresence(int characteristics,
                                                  int characteristicsSearch) {
         return (characteristics & characteristicsSearch) == characteristicsSearch;
+    }
+
+    void LED_init()
+    {
+        mGreenLed = (ImageView)  rootView.findViewById(R.id.green_led);
+        mOrangeLed = (ImageView)  rootView.findViewById(R.id.orange_led);
+        mRedLed = (ImageView)  rootView.findViewById(R.id.red_led);
+
+        mGreenLed.setImageResource(R.drawable.round_bg_green);
+        AnimationDrawable orange = (AnimationDrawable) mOrangeLed.getBackground();
+        orange.start();
+        AnimationDrawable Red = (AnimationDrawable) mRedLed.getBackground();
+        Red.start();
+
+        mGreenLed.setImageResource(R.drawable.round_bg);
+        orange.stop();
+        Red.stop();
     }
 }

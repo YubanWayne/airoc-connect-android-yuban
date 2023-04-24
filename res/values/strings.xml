@@ -152,7 +152,10 @@
     <!-- HRM profile elements -->
     <string name="co2_parts_ppm">ppm</string>
     <string name="co2_demo_ppm">100</string>
-
+    <string name="yuban_string">AIROC-CO2</string>
+    <string name="green_define">1000&lt;</string>
+    <string name="orange_define"></string>
+    <string name="red_define">&lt;5000</string>
 
     <!-- HRM profile elements -->
     <string name="hrm_data_unit">bpm</string>
