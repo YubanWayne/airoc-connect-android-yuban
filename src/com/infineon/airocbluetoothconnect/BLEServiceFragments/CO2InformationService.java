@@ -171,6 +171,8 @@ public class CO2InformationService extends Fragment {
 
         LED_init();
 
+        prepareBroadcastDataNotify(mNotifyCharacteristic);
+
         mProgressDialog = new ProgressDialog(getActivity());
 
         setHasOptionsMenu(true);
@@ -187,7 +189,7 @@ public class CO2InformationService extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (mNotifyCharacteristic != null && mNotifyCharacteristicEnabled) {
+        if (mNotifyCharacteristic != null) {
             stopBroadcastDataNotify(mNotifyCharacteristic);
         }
         BluetoothLeService.unregisterBroadcastReceiver(getActivity(), mGattUpdateReceiver);
@@ -203,6 +205,9 @@ public class CO2InformationService extends Fragment {
         for (BluetoothGattCharacteristic gattCharacteristic : gattCharacteristics) {
             String uuidchara = gattCharacteristic.getUuid().toString();
             if (uuidchara.equalsIgnoreCase(GattAttributes.CO2_LEVEL)) {
+
+                mReadCharacteristic = gattCharacteristic;
+                mNotifyCharacteristic = gattCharacteristic;
 
                 prepareBroadcastDataRead(gattCharacteristic);
                 break;
