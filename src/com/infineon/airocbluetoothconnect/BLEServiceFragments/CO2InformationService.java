@@ -60,6 +60,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.infineon.airocbluetoothconnect.BLEConnectionServices.BluetoothLeService;
+import com.infineon.airocbluetoothconnect.CommonFragments.CarouselFragment;
 import com.infineon.airocbluetoothconnect.CommonUtils.Constants;
 import com.infineon.airocbluetoothconnect.CommonUtils.GattAttributes;
 import com.infineon.airocbluetoothconnect.CommonUtils.Logger;
@@ -99,7 +100,49 @@ public class CO2InformationService extends Fragment {
                             .getStringExtra(Constants.EXTRA_BTL_VALUE);
                     Logger.i("received_btl_data " + received_btl_data);
                     if (!received_btl_data.equalsIgnoreCase(" ")) {
-                        displayBatteryLevel(received_btl_data);
+                        displayCO2value(received_btl_data+"00");
+
+                        int BTL_VALUE = Integer.parseInt(received_btl_data);
+
+                        AnimationDrawable Red = (AnimationDrawable) mRedLed.getBackground();
+                        AnimationDrawable orange = (AnimationDrawable) mOrangeLed.getBackground();
+
+                        //turn all LED off, then trigger right LED on. If no LED on, it will something wrong.
+                        mGreenLed.setImageResource(R.drawable.round_bg);
+                        orange.stop();
+                        Red.stop();
+
+                        if(CarouselFragment.debug)
+                        {
+                            if( BTL_VALUE < 10)
+                            {
+                                mGreenLed.setImageResource(R.drawable.round_bg_green);
+                                orange.selectDrawable(0);
+                                Red.selectDrawable(0);
+
+                            }else if( 10 <= BTL_VALUE && BTL_VALUE < 50)
+                            {
+                                orange.start();
+                                Red.selectDrawable(0);
+                            }else if( 50 <=BTL_VALUE)
+                            {
+                                Red.start();
+                                orange.selectDrawable(0);
+                            }
+                        }else
+                        {
+                            if( BTL_VALUE < 1000)
+                            {
+                                mGreenLed.setImageResource(R.drawable.round_bg_green);
+
+                            }else if( 1000 <= BTL_VALUE && BTL_VALUE < 5000)
+                            {
+                                orange.start();
+                            }else if( 5000 <=BTL_VALUE)
+                            {
+                                Red.start();
+                            }
+                        }
                     }
                 }
             }
@@ -142,20 +185,17 @@ public class CO2InformationService extends Fragment {
     private ImageView mOrangeLed;
     private ImageView mRedLed;
 
+    private TextView mCO2_valueText;
     private Button mNotifyButton;
     private Button mReadButton;
 
     /**
-     * Method to display the battery level
+     * Method to display the CO2 value
      *
      * @param received_btl_data
      */
-    private void displayBatteryLevel(String received_btl_data) {
-        //mBatteryLevelText.setText(received_btl_data + "%");
-        //int battery = Integer.parseInt(received_btl_data);
-        //mBatteryProgress.setProgress(battery);
-
-
+    private void displayCO2value(String received_btl_data) {
+        mCO2_valueText.setText(received_btl_data);
     }
 
     public static CO2InformationService create(BluetoothGattService service) {
@@ -169,9 +209,12 @@ public class CO2InformationService extends Fragment {
         rootView = inflater.inflate(R.layout.co2_info_fragment,
                 container, false);
 
+        mCO2_valueText = (TextView) rootView
+                .findViewById(R.id.CO2_value);
+
         LED_init();
 
-        prepareBroadcastDataNotify(mNotifyCharacteristic);
+        //prepareBroadcastDataNotify(mNotifyCharacteristic);
 
         mProgressDialog = new ProgressDialog(getActivity());
 
@@ -204,12 +247,12 @@ public class CO2InformationService extends Fragment {
                 .getCharacteristics();
         for (BluetoothGattCharacteristic gattCharacteristic : gattCharacteristics) {
             String uuidchara = gattCharacteristic.getUuid().toString();
-            if (uuidchara.equalsIgnoreCase(GattAttributes.CO2_LEVEL)) {
+            if (uuidchara.equalsIgnoreCase(GattAttributes.CO2_LEVEL)||uuidchara.equalsIgnoreCase(GattAttributes.BATTERY_LEVEL)) {
 
                 mReadCharacteristic = gattCharacteristic;
                 mNotifyCharacteristic = gattCharacteristic;
 
-                prepareBroadcastDataRead(gattCharacteristic);
+                prepareBroadcastDataNotify(mNotifyCharacteristic);
                 break;
             }
         }

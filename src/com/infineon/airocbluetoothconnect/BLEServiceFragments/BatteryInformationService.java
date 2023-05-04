@@ -42,6 +42,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -83,7 +84,7 @@ public class BatteryInformationService extends Fragment {
     private BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
 
         @Override
-        public void onReceive(Context context, Intent intent) {
+        public void onReceive(Context context, @NonNull Intent intent) {
             final String action = intent.getAction();
             Bundle extras = intent.getExtras();
             // GATT Data available
