@@ -81,7 +81,7 @@ import java.util.UUID;
 
 public class CarouselFragment extends Fragment {
 
-    public static boolean debug = true;
+    public static boolean debug = false;
     public final static String EXTRA_FRAG_DEVICE_ADDRESS = "com.infineon.airocbluetoothconnect.fragments.CarouselFragment.EXTRA_FRAG_DEVICE_ADDRESS";
     private final static HashMap<String, BluetoothGattService> mBleHashMap = new HashMap<String, BluetoothGattService>();
     /**
@@ -176,11 +176,11 @@ public class CarouselFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Getting the Mapped service from the UUID
-                if (mUuid.equals("0000054a-0000-1000-8000-00805f9b34fb11"))
+                if (mUuid.equals("0000054a-0000-1000-8000-00805f9b34fb113"))
                 {
-                    if(debug)
+                    if(false)
                     {
-                        mService = mBleHashMap.get("0000180f-0000-1000-8000-00805f9b34fb7");
+                        mService = mBleHashMap.get("0000180f-0000-1000-8000-00805f9b34fb97");
                         BluetoothGattService test = mBleHashMap.get(mUuid);
                     }
                     else

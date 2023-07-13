@@ -794,6 +794,11 @@ public class BluetoothLeService extends Service {
             bundle.putString(Constants.EXTRA_BTL_VALUE,
                     Utils.getBatteryLevel(characteristic));
         }
+        // CO2 level read value
+        else if (characteristic.getUuid().equals(UUIDDatabase.UUID_CO2_LEVEL)) {
+            bundle.putString(Constants.EXTRA_CO2_VALUE,
+                    Utils.getCO2Level(characteristic));
+        }
         // Health thermometer sensor location read value
         else if (characteristic.getUuid()
                 .equals(UUIDDatabase.UUID_TEMPERATURE_TYPE)) {

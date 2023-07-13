@@ -42,6 +42,9 @@ public class UUIDDatabase {
 
     public final static UUID UUID_Carbon_Dioxide_Sensor = UUID
             .fromString(GattAttributes.Carbon_Dioxide_Sensor);
+
+    public final static UUID UUID_CO2_LEVEL = UUID
+            .fromString(GattAttributes.CO2_LEVEL);
     /**
      * Heart rate related UUID
      */

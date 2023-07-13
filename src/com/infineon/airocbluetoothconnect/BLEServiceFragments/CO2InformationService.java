@@ -95,12 +95,20 @@ public class CO2InformationService extends Fragment {
             if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 Logger.i("Data Available");
                 // Check for battery information
-                if (extras.containsKey(Constants.EXTRA_BTL_VALUE)) {
+                if (extras.containsKey(Constants.EXTRA_CO2_VALUE)) {
                     String received_btl_data = intent
-                            .getStringExtra(Constants.EXTRA_BTL_VALUE);
+                            .getStringExtra(Constants.EXTRA_CO2_VALUE);
                     Logger.i("received_btl_data " + received_btl_data);
                     if (!received_btl_data.equalsIgnoreCase(" ")) {
-                        displayCO2value(received_btl_data+"00");
+
+                        if(CarouselFragment.debug)
+                        {
+                            displayCO2value(received_btl_data+"00");
+                        }
+                        else
+                        {
+                            displayCO2value(received_btl_data);
+                        }
 
                         int BTL_VALUE = Integer.parseInt(received_btl_data);
 

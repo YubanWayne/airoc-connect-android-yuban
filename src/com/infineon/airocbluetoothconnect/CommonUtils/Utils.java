@@ -289,6 +289,73 @@ public class Utils {
         return String.valueOf(batteryLevel);
     }
 
+
+    /**
+     * Returns the battery level information from the characteristics
+     *
+     * @param characteristics
+     * @return {@link String}
+     */
+    public static String getCO2Level(BluetoothGattCharacteristic characteristics) {
+        int MSB_1 = characteristics.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
+        int MSB_0 = characteristics.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 1);
+        int LSB_1 = characteristics.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
+        int LSB_0 = characteristics.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 3);
+        int MSB = 0;
+
+        if (MSB_1 >= 65)
+        {
+            MSB = MSB_1+10-65;
+        }
+        else
+        {
+            MSB = MSB_1-48;
+        }
+
+        MSB = 16 * MSB;
+
+        if (MSB_0 >= 65)
+        {
+            MSB += MSB_0+10-65;
+        }
+        else
+        {
+            MSB += MSB_0-48;
+        }
+        int LSB = 0;
+
+        if (LSB_1 >= 65)
+        {
+            LSB += LSB_1+10-65;
+        }
+        else
+        {
+            LSB += LSB_1-48;
+        }
+
+        LSB = 16 * LSB;
+
+        if (LSB_0 >= 65)
+        {
+            LSB += LSB_0+10-65;
+        }
+        else
+        {
+            LSB += LSB_0-48;
+        }
+
+        int data=0;
+
+        data = MSB*16*16+LSB;
+
+        if(data<0)
+        {
+            int debug = 0;
+        }
+
+        return String.valueOf(data);
+    }
+
     /**
      * Returns the Alert level information from the characteristics
      *

@@ -78,6 +78,9 @@ public class Constants {
             "EXTRA_HTM_TEMPERATURE_TYPE_VALUE";
     public static final String EXTRA_BTL_VALUE = "com.infineon.airocbluetoothconnect.backgroundservices." +
             "EXTRA_BTL_VALUE";
+
+    public static final String EXTRA_CO2_VALUE = "com.infineon.airocbluetoothconnect.backgroundservices." +
+            "EXTRA_CO2_VALUE";
     public static final String EXTRA_CAPPROX_VALUE = "com.infineon.airocbluetoothconnect.backgroundservices." +
             "EXTRA_CAPPROX_VALUE";
     public static final String EXTRA_CAPSLIDER_VALUE = "com.infineon.airocbluetoothconnect.backgroundservices." +

@@ -118,7 +118,7 @@ public class GattAttributes {
      *
      */
 
-    public static final String CO2_LEVEL = "C23AB04B-5B8B-40CB-AB44-069084FB0724";
+    public static final String CO2_LEVEL = "c23ab04b-5b8b-40cb-ab44-069084fb0724";
 
     /**
      * Battery characteristics
@@ -441,6 +441,9 @@ public class GattAttributes {
 
         // Battery service characteristics
         attributesUUID.put(UUIDDatabase.UUID_BATTERY_LEVEL, "Battery Level");
+
+        // Battery service characteristics
+        attributesUUID.put(UUIDDatabase.UUID_CO2_LEVEL, "CO2 Level");
 
         // Find me service characteristics
         attributesUUID.put(UUIDDatabase.UUID_ALERT_LEVEL, "Alert Level");
