@@ -142,13 +142,16 @@ public class CO2InformationService extends Fragment {
                             if( BTL_VALUE < 1000)
                             {
                                 mGreenLed.setImageResource(R.drawable.round_bg_green);
-
+                                orange.selectDrawable(0);
+                                Red.selectDrawable(0);
                             }else if( 1000 <= BTL_VALUE && BTL_VALUE < 5000)
                             {
                                 orange.start();
+                                Red.selectDrawable(0);
                             }else if( 5000 <=BTL_VALUE)
                             {
                                 Red.start();
+                                orange.selectDrawable(0);
                             }
                         }
                     }
