@@ -118,6 +118,13 @@ public class GattAttributes {
      *
      */
 
+    public static final String CEILING_FAN_SERVICE = "00003DB3-0000-1000-8000-00805F9B34FB";
+    public static final String CEILING_FAN_CONTROL = "0000120C-0000-1000-8000-00805F9B34FB";
+
+    /**
+     *
+     */
+
     public static final String CO2_LEVEL = "c23ab04b-5b8b-40cb-ab44-069084fb0724";
 
     /**
@@ -364,6 +371,10 @@ public class GattAttributes {
     public static final String WEARABLE_MOTION_DISTANCE_GOAL_CHARACTERISTIC = "000d0009-f8ce-11e4-abf4-0002a5d5c51b";
 
     static {
+
+        //Ceiling Fan
+        attributesUUID.put(UUIDDatabase.UUID_CEILING_FAN_SERVICE, "Ceiling Fan Service");
+
         //CO2 Sensor
         attributesUUID.put(UUIDDatabase.UUID_Carbon_Dioxide_Sensor, "CO2 Sensor");
 
@@ -442,8 +453,11 @@ public class GattAttributes {
         // Battery service characteristics
         attributesUUID.put(UUIDDatabase.UUID_BATTERY_LEVEL, "Battery Level");
 
-        // Battery service characteristics
+        // CO2 service characteristics
         attributesUUID.put(UUIDDatabase.UUID_CO2_LEVEL, "CO2 Level");
+
+        // Battery service characteristics
+        attributesUUID.put(UUIDDatabase.UUID_CEILING_FAN_CONTROL, "CEILING FAN CONTROL");
 
         // Find me service characteristics
         attributesUUID.put(UUIDDatabase.UUID_ALERT_LEVEL, "Alert Level");

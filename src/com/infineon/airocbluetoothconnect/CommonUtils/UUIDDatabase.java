@@ -40,6 +40,15 @@ import java.util.UUID;
  */
 public class UUIDDatabase {
 
+    public final static UUID UUID_CEILING_FAN_SERVICE= UUID
+            .fromString(GattAttributes.CEILING_FAN_SERVICE);
+
+    public final static UUID UUID_CEILING_FAN_CONTROL= UUID
+            .fromString(GattAttributes.CEILING_FAN_CONTROL);
+
+    /**
+     * CO2 UUID
+     */
     public final static UUID UUID_Carbon_Dioxide_Sensor = UUID
             .fromString(GattAttributes.Carbon_Dioxide_Sensor);
 

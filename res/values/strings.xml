@@ -346,6 +346,7 @@
     <string name="datalogger_history">Data Logger History</string>
     <string name="search_title">Search Devices</string>
     <string name="clear_cache_on_disconnect">Clear cache on disconnect</string>
+    <string name="ceiling_fan_fragment">CO2 Sensor</string>
 
     <!-- RGB LED profile elements -->
     <string name="rgb_current_color">Current Color</string>

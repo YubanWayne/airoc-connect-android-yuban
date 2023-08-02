@@ -308,6 +308,9 @@ public class CarouselFragment extends Fragment {
                     } else if (mService.getUuid().equals(UUIDDatabase.UUID_LOCATION_NAVIGATION_SERVICE)) {
                         LocationFragment locationFragment = LocationFragment.create();
                         displayView(locationFragment, LocationFragment.TAG);
+                    } else if(mService.getUuid().equals(UUIDDatabase.UUID_CEILING_FAN_SERVICE)) {
+                            BatteryInformationService batteryInfoFragment = BatteryInformationService.create(mService);
+                            displayView(batteryInfoFragment, getResources().getString(R.string.ceiling_fan_fragment));
                     } else {
                         showWarningMessage();
                     }
