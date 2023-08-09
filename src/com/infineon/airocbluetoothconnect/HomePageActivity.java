@@ -69,6 +69,7 @@ import com.infineon.airocbluetoothconnect.BLEServiceFragments.BatteryInformation
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.BloodPressureService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.CSCService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.CapsenseService;
+import com.infineon.airocbluetoothconnect.BLEServiceFragments.CeilingFanService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.DeviceInformationService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.FindMeService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.GlucoseService;
@@ -416,6 +417,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationDra
             mParentView.closeDrawer(GravityCompat.START);
         } else {
             if (currentFragment instanceof HeartRateService
+                    || currentFragment instanceof CeilingFanService
                     || currentFragment instanceof CO2InformationService
                     || currentFragment instanceof HealthTemperatureService
                     || currentFragment instanceof DeviceInformationService

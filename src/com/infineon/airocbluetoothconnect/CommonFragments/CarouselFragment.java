@@ -55,6 +55,7 @@ import com.infineon.airocbluetoothconnect.BLEServiceFragments.BatteryInformation
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.BloodPressureService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.CSCService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.CapsenseService;
+import com.infineon.airocbluetoothconnect.BLEServiceFragments.CeilingFanService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.DeviceInformationService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.FindMeService;
 import com.infineon.airocbluetoothconnect.BLEServiceFragments.GlucoseService;
@@ -309,8 +310,8 @@ public class CarouselFragment extends Fragment {
                         LocationFragment locationFragment = LocationFragment.create();
                         displayView(locationFragment, LocationFragment.TAG);
                     } else if(mService.getUuid().equals(UUIDDatabase.UUID_CEILING_FAN_SERVICE)) {
-                            BatteryInformationService batteryInfoFragment = BatteryInformationService.create(mService);
-                            displayView(batteryInfoFragment, getResources().getString(R.string.ceiling_fan_fragment));
+                            CeilingFanService CeilingFanFragment = CeilingFanService.create(mService);
+                            displayView(CeilingFanFragment, getResources().getString(R.string.ceiling_fan_fragment));
                     } else {
                         showWarningMessage();
                     }

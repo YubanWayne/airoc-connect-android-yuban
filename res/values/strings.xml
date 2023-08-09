@@ -149,13 +149,24 @@
     <string name="enable_notify_failed">Failed to enable notification(s).
         If you see this error repeatedly, disconnect and connect back to the device.</string>
 
-    <!-- HRM profile elements -->
+    <!-- CO2 profile elements -->
     <string name="co2_parts_ppm">ppm</string>
     <string name="co2_demo_ppm">100</string>
     <string name="yuban_string">AIROC-CO2</string>
     <string name="green_define">1000&lt;</string>
     <string name="orange_define"></string>
     <string name="red_define">&lt;5000</string>
+
+
+    <!-- Ceiling Fan profile elements -->
+    <string name="yuban_fan_string">AIROC-Ceiling Fan</string>
+    <string name="speed_level_grade">grade</string>
+    <string name="Speed_demo">0</string>
+    <string name="Direction_demo">F</string>
+    <string name="Speed_up">&gt;</string>
+    <string name="Speed_down">&lt;</string>
+    <string name="Stop">stop</string>
+    <string name="Invert">invert</string>
 
     <!-- HRM profile elements -->
     <string name="hrm_data_unit">bpm</string>
@@ -346,7 +357,7 @@
     <string name="datalogger_history">Data Logger History</string>
     <string name="search_title">Search Devices</string>
     <string name="clear_cache_on_disconnect">Clear cache on disconnect</string>
-    <string name="ceiling_fan_fragment">CO2 Sensor</string>
+    <string name="ceiling_fan_fragment">Ceiling Fan Control</string>
 
     <!-- RGB LED profile elements -->
     <string name="rgb_current_color">Current Color</string>

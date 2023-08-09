@@ -659,6 +659,9 @@ public class GattAttributes {
         rdkAttributesUUID.put(4, "Report Audio Control");
         rdkAttributesUUID.put(5, "Report Audio Data");
 
+        //Ceiling fan control
+        attributesImageMap.put(UUIDDatabase.UUID_CEILING_FAN_SERVICE, R.drawable.ceiling);
+
         //CO2
         attributesImageMap.put(UUIDDatabase.UUID_Carbon_Dioxide_Sensor, R.drawable.co2);
 
