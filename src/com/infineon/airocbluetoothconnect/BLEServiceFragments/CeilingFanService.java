@@ -100,6 +100,9 @@ public class CeilingFanService extends Fragment {
 
     private Button mInvertButton;
 
+    private int mSpeedLevel;
+
+    private String mDirection;
     public static CeilingFanService create(BluetoothGattService service) {
         mService = service;
         return new CeilingFanService();
@@ -111,7 +114,7 @@ public class CeilingFanService extends Fragment {
         rootView = inflater.inflate(R.layout.ceiling_fan_control_fragment,
                 container, false);
         mApplication = (AIROCBluetoothConnectApp) getActivity().getApplication();
-        
+
         //GattCharacteristics need set - Start
         mGattCharacteristics = mService.getCharacteristics();
         //TODO : check safe function
@@ -124,17 +127,68 @@ public class CeilingFanService extends Fragment {
                 .findViewById(R.id.SpeedLevel);
         mDirectionText  = (TextView) rootView
                 .findViewById(R.id.Direction);
+        mDirectionText.setText("F");
+
+        mSpeedUpButton = (Button) rootView.findViewById(R.id.Speed_up);
+        mSpeedDownButton = (Button) rootView.findViewById(R.id.Speed_down);
         mStopButton = (Button) rootView.findViewById(R.id.Stop);
-        //mSpeedUpButton.setOnClickListener(this);
-        //mSpeedDownButton.setOnClickListener(this);
+        mInvertButton = (Button) rootView.findViewById(R.id.Invert);
+
+
+
+        mSpeedUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpeedLevel = Integer.parseInt(mSpeedLevelText.getText().toString());
+
+                if(mSpeedLevel<7 && 0<=mSpeedLevel)
+                {
+                    mSpeedLevel++;
+                }
+                mSpeedLevelText.setText(String.valueOf(mSpeedLevel));
+                byte[] convertedBytes = Utils.convertingToByteArray("0x0"+ mSpeedLevel);
+                writeCharacteristicValue(convertedBytes);
+            }
+        });
+        mSpeedDownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpeedLevel = Integer.parseInt(mSpeedLevelText.getText().toString());
+
+                if(mSpeedLevel<=7 && 1<mSpeedLevel)
+                {
+                    mSpeedLevel--;
+                }
+                mSpeedLevelText.setText(String.valueOf(mSpeedLevel));
+                byte[] convertedBytes = Utils.convertingToByteArray("0x0"+ mSpeedLevel);
+                writeCharacteristicValue(convertedBytes);
+            }
+        });
         mStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mSpeedLevelText.setText("0");
                 byte[] convertedBytes = Utils.convertingToByteArray("0x00");
                 writeCharacteristicValue(convertedBytes);
             }
         });
-        //mInvertButton.setOnClickListener(this);
+        mInvertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDirection = mDirectionText.getText().toString();
+                if(mDirection=="F")
+                {
+                    mDirectionText.setText("R");
+                    byte[] convertedBytes = Utils.convertingToByteArray("0xFF");
+                    writeCharacteristicValue(convertedBytes);
+                }
+                else {
+                    mDirectionText.setText("F");
+                    byte[] convertedBytes = Utils.convertingToByteArray("0xFE");
+                    writeCharacteristicValue(convertedBytes);
+                }
+            }
+        });
 
         setHasOptionsMenu(true);
         return rootView;

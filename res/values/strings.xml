@@ -159,7 +159,7 @@
 
 
     <!-- Ceiling Fan profile elements -->
-    <string name="yuban_fan_string">AIROC-Ceiling Fan</string>
+    <string name="yuban_fan_string">XMC-Ceiling Fan</string>
     <string name="speed_level_grade">grade</string>
     <string name="Speed_demo">0</string>
     <string name="Direction_demo">F</string>
