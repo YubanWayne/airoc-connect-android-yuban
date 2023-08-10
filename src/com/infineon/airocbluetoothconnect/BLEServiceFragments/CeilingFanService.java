@@ -159,6 +159,12 @@ public class CeilingFanService extends Fragment {
                 {
                     mSpeedLevel--;
                 }
+
+                //Start up when stop status
+                if(mSpeedLevel==0)
+                {
+                    mSpeedLevel = 1;
+                }
                 mSpeedLevelText.setText(String.valueOf(mSpeedLevel));
                 byte[] convertedBytes = Utils.convertingToByteArray("0x0"+ mSpeedLevel);
                 writeCharacteristicValue(convertedBytes);
